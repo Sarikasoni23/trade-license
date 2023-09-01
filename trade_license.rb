@@ -39,35 +39,34 @@ class TradeLicense
     name =  wait.until{
       driver.find_element(class: "establishment-name")
     }
+    puts name.text
 
     full_address = wait.until {
       driver.find_element(:id, "address")
     }
+    puts full_address.text
 
     current_status = wait.until {
       driver.find_element(class: "label-success")
     }
-    current_status.find_elements("xpath", ".//span")
+    puts current_status.text
 
     valid_till = wait.until {
       driver.find_element(class: "label-danger")
     }
-    valid_till.find_elements("xpath", ".//span")
+    puts valid_till.text
 
     details = wait.until {
       driver.find_element(class: "establishment-meta")
     }
+    puts details.text
 
     scraped_data = {
-      name: "M/S. Rahmania Bekari (মেসার্স রহমানিয়া বেকারী এন্ড বিস্কুট ফ্যাক্টরী)",
-      full_address: "House/Holding/Village/Mahalla (in English): Owalia, Lalpur, Natore,Natore Sadar, Natore, Rajshahi",
-      current_status: "Registered",
-      valid_till: "Expired",
-      industrial_sector: "Bread and Biscuits",
-      license_number: "69-63-1-059-00008 Old License Number: 1356",
-      registration_number: "69-63-1-059-00008 Old Registration Number: 1356",
-      category: "A",
-      total_number_of_workers: "8 + 2 = 10"
+      name: name.text,
+      full_address: full_address.text,
+      current_status: current_status.text,
+      valid_till: valid_till.text,
+      details: details.text
     }
 
     scraped_data
